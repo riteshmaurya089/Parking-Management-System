@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Parking System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Smart Parking System</h2>
+                <p>Admin Dashboard</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#parking-spots"><i class="fas fa-car"></i> Parking Spots</a></li>
+                <li><a href="#reservations"><i class="fas fa-calendar-check"></i> Reservations</a></li>
+                <li><a href="#users"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="#payments"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                    <h3>Dashboard</h3>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <button class="notification-btn"><i class="fas fa-bell"></i> <span class="badge">3</span></button>
+                        <div class="notification-dropdown">
+                            <div class="notification-item">
+                                <p>New reservation received</p>
+                                <small>2 min ago</small>
+                            </div>
+                            <div class="notification-item">
+                                <p>System maintenance scheduled</p>
+                                <small>1 hour ago</small>
+                            </div>
+                            <div class="notification-item">
+                                <p>Parking spot sensor offline</p>
+                                <small>3 hours ago</small>
+                            </div>
+                            <a href="#" class="view-all">View all notifications</a>
+                        </div>
+                    </div>
+                    <div class="admin-profile">
+                        <img src="assets/user-avatar.jpg.jpg" alt="Admin Avatar">
+                        <span>Admin User</span>
+                        <div class="profile-dropdown">
+                            <a href="#"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Dashboard Overview -->
+                <section id="dashboard" class="dashboard-section">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: #3498db;">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1,245</h3>
+                                <p>Total Parking Spots</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: #2ecc71;">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>328</h3>
+                                <p>Active Reservations</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: #e74c3c;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>5,892</h3>
+                                <p>Registered Users</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background-color: #f39c12;">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>$12,845</h3>
+                                <p>Today's Revenue</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-row">
+                        <div class="chart-card">
+                            <div class="card-header">
+                                <h4>Reservations Overview</h4>
+                                <select id="reservationPeriod">
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="reservationsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="card-header">
+                                <h4>Revenue Overview</h4>
+                                <select id="revenuePeriod">
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-row">
+                        <div class="table-card">
+                            <div class="card-header">
+                                <h4>Recent Reservations</h4>
+                                <a href="#reservations" class="view-all">View All</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="recentReservations">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>User</th>
+                                            <th>Location</th>
+                                            <th>Spot</th>
+                                            <th>Time</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>SP-2023-06-0015</td>
+                                            <td>John Doe</td>
+                                            <td>Downtown Garage</td>
+                                            <td>A24</td>
+                                            <td>Today, 9:00 AM</td>
+                                            <td>$22.00</td>
+                                            <td><span class="status-badge confirmed">Confirmed</span></td>
+                                            <td>
+                                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SP-2023-06-0014</td>
+                                            <td>Jane Smith</td>
+                                            <td>City Center Lot</td>
+                                            <td>B12</td>
+                                            <td>Today, 11:00 AM</td>
+                                            <td>$14.00</td>
+                                            <td><span class="status-badge completed">Completed</span></td>
+                                            <td>
+                                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SP-2023-06-0013</td>
+                                            <td>Robert Johnson</td>
+                                            <td>Riverfront Parking</td>
+                                            <td>C07</td>
+                                            <td>Yesterday, 2:00 PM</td>
+                                            <td>$12.00</td>
+                                            <td><span class="status-badge cancelled">Cancelled</span></td>
+                                            <td>
+                                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SP-2023-06-0012</td>
+                                            <td>Sarah Williams</td>
+                                            <td>Mall Parking</td>
+                                            <td>D15</td>
+                                            <td>Yesterday, 4:30 PM</td>
+                                            <td>$18.00</td>
+                                            <td><span class="status-badge completed">Completed</span></td>
+                                            <td>
+                                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Parking Spots Management -->
+                <section id="parking-spots" class="dashboard-section" style="display: none;">
+                    <div class="section-header">
+                        <h3>Parking Spots Management</h3>
+                        <button class="cta-button" id="addParkingSpot"><i class="fas fa-plus"></i> Add Parking Spot</button>
+                    </div>
+                    <div class="table-card">
+                        <div class="card-header">
+                            <div class="search-box">
+                                <input type="text" placeholder="Search parking spots..." id="spotSearch">
+                                <button><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="table-actions">
+                                <button class="action-btn export"><i class="fas fa-file-export"></i> Export</button>
+                                <button class="action-btn filter"><i class="fas fa-filter"></i> Filter</button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="parkingSpotsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Location</th>
+                                        <th>Spot Code</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Price/Hour</th>
+                                        <th>Features</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>PS001</td>
+                                        <td>Downtown Garage, Level 2</td>
+                                        <td>A24</td>
+                                        <td>Standard</td>
+                                        <td><span class="status-badge available">Available</span></td>
+                                        <td>$3.50</td>
+                                        <td>
+                                            <span class="feature-badge"><i class="fas fa-car"></i></span>
+                                            <span class="feature-badge"><i class="fas fa-camera"></i></span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PS002</td>
+                                        <td>City Center Lot</td>
+                                        <td>B12</td>
+                                        <td>EV Charging</td>
+                                        <td><span class="status-badge reserved">Reserved</span></td>
+                                        <td>$4.00</td>
+                                        <td>
+                                            <span class="feature-badge"><i class="fas fa-bolt"></i></span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PS003</td>
+                                        <td>Riverfront Parking</td>
+                                        <td>C07</td>
+                                        <td>Standard</td>
+                                        <td><span class="status-badge unavailable">Unavailable</span></td>
+                                        <td>$3.00</td>
+                                        <td>
+                                            <span class="feature-badge"><i class="fas fa-car"></i></span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PS004</td>
+                                        <td>Mall Parking</td>
+                                        <td>D15</td>
+                                        <td>Accessible</td>
+                                        <td><span class="status-badge available">Available</span></td>
+                                        <td>$3.50</td>
+                                        <td>
+                                            <span class="feature-badge"><i class="fas fa-car"></i></span>
+                                            <span class="feature-badge"><i class="fas fa-wheelchair"></i></span>
+                                        </td>
+                                        <td>
+                                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add/Edit Parking Spot Modal -->
+                <div class="modal" id="parkingSpotModal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="modalSpotTitle">Add New Parking Spot</h3>
+                        <form id="parkingSpotForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="spotLocation">Location</label>
+                                    <select id="spotLocation" required>
+                                        <option value="">Select Location</option>
+                                        <option value="downtown">Downtown Garage</option>
+                                        <option value="citycenter">City Center Lot</option>
+                                        <option value="riverfront">Riverfront Parking</option>
+                                        <option value="mall">Mall Parking</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="spotCode">Spot Code</label>
+                                    <input type="text" id="spotCode" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="spotType">Type</label>
+                                    <select id="spotType" required>
+                                        <option value="standard">Standard</option>
+                                        <option value="ev">EV Charging</option>
+                                        <option value="accessible">Accessible</option>
+                                        <option value="truck">Truck</option>
+                                        <option value="motorcycle">Motorcycle</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="spotStatus">Status</label>
+                                    <select id="spotStatus" required>
+                                        <option value="available">Available</option>
+                                        <option value="reserved">Reserved</option>
+                                        <option value="unavailable">Unavailable</option>
+                                        <option value="maintenance">Maintenance</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="spotPrice">Price/Hour ($)</label>
+                                    <input type="number" id="spotPrice" min="0" step="0.01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="spotMaxDaily">Max Daily Rate ($)</label>
+                                    <input type="number" id="spotMaxDaily" min="0" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Features</label>
+                                <div class="features-checkboxes">
+                                    <label><input type="checkbox" name="spotFeatures" value="covered"> Covered</label>
+                                    <label><input type="checkbox" name="spotFeatures" value="security"> Security</label>
+                                    <label><input type="checkbox" name="spotFeatures" value="ev"> EV Charging</label>
+                                    <label><input type="checkbox" name="spotFeatures" value="accessible"> Accessible</label>
+                                    <label><input type="checkbox" name="spotFeatures" value="camera"> Camera</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="spotNotes">Notes</label>
+                                <textarea id="spotNotes" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-btn">Cancel</button>
+                                <button type="submit" class="cta-button">Save Parking Spot</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

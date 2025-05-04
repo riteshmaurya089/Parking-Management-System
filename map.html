@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Parking - Smart Parking System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Smart Parking System</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html" class="active">Find Parking</a></li>
+                    <li><a href="booking.html">My Bookings</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="admin.html" class="admin-link">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="loginBtn">Login</button>
+                <button id="registerBtn">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="map-container">
+            <div class="search-filters">
+                <div class="search-box">
+                    <input type="text" placeholder="Search location..." id="locationSearch">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="parkingType">Parking Type:</label>
+                        <select id="parkingType">
+                            <option value="all">All Types</option>
+                            <option value="street">Street Parking</option>
+                            <option value="lot">Parking Lot</option>
+                            <option value="garage">Parking Garage</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priceRange">Price Range:</label>
+                        <select id="priceRange">
+                            <option value="all">All Prices</option>
+                            <option value="free">Free</option>
+                            <option value="0-5">$0 - $5/hr</option>
+                            <option value="5-10">$5 - $10/hr</option>
+                            <option value="10+">$10+/hr</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="availability">Availability:</label>
+                        <select id="availability">
+                            <option value="all">Show All</option>
+                            <option value="available">Available Now</option>
+                        </select>
+                    </div>
+                    <button id="applyFilters">Apply Filters</button>
+                </div>
+            </div>
+            
+            <div id="parkingMap"></div>
+            
+            <div class="parking-list">
+                <h3>Available Parking Near You</h3>
+                <div class="list-container" id="parkingList">
+                    <!-- Parking spots will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Parking Spot Details Modal -->
+    <div class="modal" id="spotModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="spot-details">
+                <div class="spot-images">
+                    <img src="assets/parking-lot.jpg" alt="Parking spot" id="spotMainImage">
+                    <div class="spot-thumbnails">
+                        <img src="assets/parking-lot.jpg" alt="Thumbnail 1">
+                        <img src="assets/parking-garage.jpg" alt="Thumbnail 2">
+                        <img src="assets/street-parking.jpg" alt="Thumbnail 3">
+                    </div>
+                </div>
+                <div class="spot-info">
+                    <h2 id="spotName">Downtown Parking Garage</h2>
+                    <div class="spot-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(24 reviews)</span>
+                    </div>
+                    <p id="spotAddress">123 Main St, Anytown, USA</p>
+                    <div class="spot-features">
+                        <span><i class="fas fa-car"></i> Covered</span>
+                        <span><i class="fas fa-camera"></i> Security</span>
+                        <span><i class="fas fa-bolt"></i> EV Charging</span>
+                        <span><i class="fas fa-wheelchair"></i> Accessible</span>
+                    </div>
+                    <div class="spot-availability">
+                        <h3>Availability</h3>
+                        <div class="availability-grid" id="availabilityGrid">
+                            <!-- Time slots will be dynamically added here -->
+                        </div>
+                    </div>
+                    <div class="spot-pricing">
+                        <h3>Pricing</h3>
+                        <p><span id="spotPrice">$3.50</span> / hour</p>
+                        <p>Max daily rate: <span id="spotMaxDaily">$25.00</span></p>
+                    </div>
+                    <button class="cta-button" id="reserveSpot">Reserve Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>

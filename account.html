@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - SmartPark</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Smart Parking System</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Find Parking</a></li>
+                    <li><a href="booking.html">My Bookings</a></li>
+                    <li><a href="account.html" class="active">Account</a></li>
+                    <li><a href="admin.html" class="admin-link">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="account-container">
+            <div class="account-sidebar">
+                <div class="profile-summary">
+                    <div class="profile-avatar">
+                        <img src="assets/user-avatar.jpg.jpg" alt="User Avatar">
+                        <button class="edit-avatar"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <h3>Ritesh Maurya</h3>
+                    <p>Member since jan 2025</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span>24</span>
+                            <small>Bookings</small>
+                        </div>
+                        <div class="stat-item">
+                            <span>4.8</span>
+                            <small>Rating</small>
+                        </div>
+                    </div>
+                </div>
+                <nav class="account-menu">
+                    <ul>
+                        <li class="active"><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                        <li><a href="#security"><i class="fas fa-lock"></i> Security</a></li>
+                        <li><a href="#payment"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                        <li><a href="#vehicles"><i class="fas fa-car"></i> My Vehicles</a></li>
+                        <li><a href="#preferences"><i class="fas fa-cog"></i> Preferences</a></li>
+                        <li><a href="#notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="account-content">
+                <!-- Profile Section -->
+                <section id="profile" class="account-section">
+                    <div class="section-header">
+                        <h2>Profile Information</h2>
+                        <button class="edit-btn" id="editProfileBtn">Edit Profile</button>
+                    </div>
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <label>Full Name</label>
+                            <p id="userName">John Doe</p>
+                        </div>
+                        <div class="info-item">
+                            <label>Email</label>
+                            <p id="userEmail">john.doe@example.com</p>
+                        </div>
+                        <div class="info-item">
+                            <label>Phone Number</label>
+                            <p id="userPhone">+1 (555) 123-4567</p>
+                        </div>
+                        <div class="info-item">
+                            <label>Address</label>
+                            <p id="userAddress">123 Main St, Anytown, USA 12345</p>
+                        </div>
+                        <div class="info-item">
+                            <label>Member Since</label>
+                            <p id="memberSince">June 15, 2022</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Edit Form (hidden by default) -->
+                <section id="profileEdit" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Edit Profile</h2>
+                    </div>
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="editName">Full Name</label>
+                                <input type="text" id="editName" value="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">Email</label>
+                                <input type="email" id="editEmail" value="john.doe@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="editPhone">Phone Number</label>
+                                <input type="tel" id="editPhone" value="+1 (555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="editAddress">Address</label>
+                                <input type="text" id="editAddress" value="123 Main St, Anytown, USA 12345">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancelProfileEdit">Cancel</button>
+                            <button type="submit" class="cta-button">Save Changes</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Security Section -->
+                <section id="security" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Security Settings</h2>
+                    </div>
+                    <div class="security-settings">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>Password</h4>
+                                <p>Last changed 3 months ago</p>
+                            </div>
+                            <button class="change-btn" id="changePasswordBtn">Change Password</button>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>Two-Factor Authentication</h4>
+                                <p>Add an extra layer of security to your account</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="twoFactorToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4>Active Sessions</h4>
+                                <p>View and manage your logged-in devices</p>
+                            </div>
+                            <button class="view-btn" id="viewSessionsBtn">View Sessions</button>
+                        </div>
+                    </div>
+
+                    <!-- Change Password Form (hidden by default) -->
+                    <div id="changePasswordForm" style="display: none;">
+                        <form id="passwordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required>
+                                <div class="password-strength">
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-text">Password strength: weak</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-btn" id="cancelPasswordChange">Cancel</button>
+                                <button type="submit" class="cta-button">Update Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Payment Methods Section -->
+                <section id="payment" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Payment Methods</h2>
+                        <button class="add-btn" id="addPaymentMethodBtn">Add Payment Method</button>
+                    </div>
+                    <div class="payment-methods">
+                        <div class="payment-card">
+                            <div class="card-details">
+                                <div class="card-type">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <span>Visa</span>
+                                </div>
+                                <div class="card-number">•••• •••• •••• 4242</div>
+                                <div class="card-expiry">Expires 04/2025</div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="payment-card">
+                            <div class="card-details">
+                                <div class="card-type">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <span>Mastercard</span>
+                                </div>
+                                <div class="card-number">•••• •••• •••• 5555</div>
+                                <div class="card-expiry">Expires 12/2024</div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Payment Method Form (hidden by default) -->
+                    <div id="addPaymentForm" style="display: none;">
+                        <form id="paymentForm">
+                            <div class="form-group">
+                                <label for="cardName">Name on Card</label>
+                                <input type="text" id="cardName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Expiration Date</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCvv">CVV</label>
+                                    <input type="text" id="cardCvv" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="saveAsDefault"> Set as default payment method
+                                </label>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-btn" id="cancelPaymentAdd">Cancel</button>
+                                <button type="submit" class="cta-button">Add Payment Method</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- My Vehicles Section -->
+                <section id="vehicles" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>My Vehicles</h2>
+                        <button class="add-btn" id="addVehicleBtn">Add Vehicle</button>
+                    </div>
+                    <div class="vehicle-list">
+                        <div class="vehicle-card">
+                            <div class="vehicle-image">
+                                <img src="assets/vehicle-sedan.png" alt="Vehicle">
+                            </div>
+                            <div class="vehicle-details">
+                                <h4>Toyota Camry</h4>
+                                <p>ABC-1234</p>
+                                <div class="vehicle-info">
+                                    <span>Sedan</span>
+                                    <span>Blue</span>
+                                </div>
+                            </div>
+                            <div class="vehicle-actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="vehicle-card">
+                            <div class="vehicle-image">
+                                <img src="assets/vehicle-suv.png" alt="Vehicle">
+                            </div>
+                            <div class="vehicle-details">
+                                <h4>Honda CR-V</h4>
+                                <p>XYZ-5678</p>
+                                <div class="vehicle-info">
+                                    <span>SUV</span>
+                                    <span>Black</span>
+                                </div>
+                            </div>
+                            <div class="vehicle-actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Vehicle Form (hidden by default) -->
+                    <div id="addVehicleForm" style="display: none;">
+                        <form id="vehicleForm">
+                            <div class="form-group">
+                                <label for="vehicleMake">Make</label>
+                                <input type="text" id="vehicleMake" placeholder="Toyota" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleModel">Model</label>
+                                <input type="text" id="vehicleModel" placeholder="Camry" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleYear">Year</label>
+                                    <input type="number" id="vehicleYear" placeholder="2020" min="1990" max="2023" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicleColor">Color</label>
+                                    <input type="text" id="vehicleColor" placeholder="Blue" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehiclePlate">License Plate</label>
+                                <input type="text" id="vehiclePlate" placeholder="ABC-1234" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleType">Vehicle Type</label>
+                                <select id="vehicleType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="sedan">Sedan</option>
+                                    <option value="suv">SUV</option>
+                                    <option value="truck">Truck</option>
+                                    <option value="van">Van</option>
+                                    <option value="motorcycle">Motorcycle</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-btn" id="cancelVehicleAdd">Cancel</button>
+                                <button type="submit" class="cta-button">Add Vehicle</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Preferences Section -->
+                <section id="preferences" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Preferences</h2>
+                    </div>
+                    <form id="preferencesForm">
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>Default Parking Duration</h4>
+                                <p>Set your preferred parking duration when booking</p>
+                            </div>
+                            <select id="defaultDuration">
+                                <option value="1">1 hour</option>
+                                <option value="2">2 hours</option>
+                                <option value="4" selected>4 hours</option>
+                                <option value="8">8 hours</option>
+                                <option value="24">24 hours</option>
+                            </select>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>Preferred Parking Type</h4>
+                                <p>Prioritize these parking types in search results</p>
+                            </div>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="preferredType" value="covered" checked> Covered</label>
+                                <label><input type="checkbox" name="preferredType" value="security" checked> Security</label>
+                                <label><input type="checkbox" name="preferredType" value="ev"> EV Charging</label>
+                                <label><input type="checkbox" name="preferredType" value="accessible"> Accessible</label>
+                            </div>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>Theme</h4>
+                                <p>Choose your preferred interface theme</p>
+                            </div>
+                            <div class="theme-options">
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="light" checked>
+                                    <span class="theme-preview light"></span>
+                                    <span>Light</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="dark">
+                                    <span class="theme-preview dark"></span>
+                                    <span>Dark</span>
+                                </label>
+                                <label class="theme-option">
+                                    <input type="radio" name="theme" value="system">
+                                    <span class="theme-preview system"></span>
+                                    <span>System</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="cta-button">Save Preferences</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Notifications Section -->
+                <section id="notifications" class="account-section" style="display: none;">
+                    <div class="section-header">
+                        <h2>Notification Preferences</h2>
+                    </div>
+                    <form id="notificationsForm">
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Booking Confirmations</h4>
+                                <p>Receive confirmation when you book a parking spot</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Reminders</h4>
+                                <p>Get reminders before your parking reservation starts</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Special Offers</h4>
+                                <p>Receive special offers and discounts</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Parking Updates</h4>
+                                <p>Get updates about your favorite parking locations</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-info">
+                                <h4>Payment Receipts</h4>
+                                <p>Receive receipts for your parking payments</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="cta-button">Save Notification Settings</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SmartPark</h3>
+                    <p>Revolutionizing parking with smart technology and real-time data.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="map.html">Find Parking</a></li>
+                        <li><a href="booking.html">My Bookings</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>info@smartpark.com</p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SmartPark. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/account.js"></script>
+</body>
+</html>

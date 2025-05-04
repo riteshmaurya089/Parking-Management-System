@@ -1,0 +1,512 @@
+/* Map Page Styles */
+.map-container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-filters {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.search-box button {
+    padding: 0 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #2980b9;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#applyFilters {
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    align-self: flex-end;
+}
+
+#applyFilters:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+}
+
+.map-content {
+    display: flex;
+    gap: 20px;
+}
+
+#parkingMap {
+    flex: 2;
+    height: 600px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.parking-list {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.parking-list h3 {
+    margin: 0 0 20px;
+    color: #2c3e50;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.parking-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.parking-item:hover {
+    border-color: #3498db;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.2);
+}
+
+.parking-item.active {
+    border-color: #3498db;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.parking-item h4 {
+    margin: 0 0 5px;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.parking-item p {
+    margin: 0 0 10px;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.parking-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.parking-features span {
+    font-size: 12px;
+    background-color: #f5f7fa;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #7f8c8d;
+    display: flex;
+    align-items: center;
+}
+
+.parking-features i {
+    margin-right: 5px;
+}
+
+.parking-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.parking-price span {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.parking-price button {
+    padding: 6px 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.parking-price button:hover {
+    background-color: #2980b9;
+}
+
+/* Parking Spot Modal */
+#spotModal .modal-content {
+    max-width: 900px;
+    padding: 30px;
+}
+
+.spot-details {
+    display: flex;
+    gap: 30px;
+}
+
+.spot-images {
+    flex: 1;
+    min-width: 300px;
+}
+
+#spotMainImage {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.spot-thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.spot-thumbnails img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.spot-thumbnails img:hover {
+    border-color: #3498db;
+}
+
+.spot-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.spot-info h2 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+    font-size: 22px;
+}
+
+.spot-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.spot-rating .stars {
+    color: #f39c12;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.spot-rating span {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.spot-info p {
+    margin: 0 0 15px;
+    color: #2c3e50;
+}
+
+.spot-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.spot-features span {
+    display: flex;
+    align-items: center;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.spot-features i {
+    margin-right: 5px;
+    color: #3498db;
+}
+
+.spot-availability h3 {
+    margin: 0 0 15px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.availability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-slot {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 13px;
+}
+
+.time-slot:hover {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.time-slot.booked {
+    background-color: #f5f7fa;
+    color: #bdc3c7;
+    border-color: #eee;
+    cursor: not-allowed;
+}
+
+.time-slot.selected {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.spot-pricing h3 {
+    margin: 0 0 10px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.spot-pricing p {
+    margin: 0 0 8px;
+    color: #2c3e50;
+}
+
+#spotPrice {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2ecc71;
+}
+
+#spotMaxDaily {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#reserveSpot {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: #2ecc71;
+}
+
+#reserveSpot:hover {
+    background-color: #27ae60;
+}
+
+/* Leaflet Overrides */
+.leaflet-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.leaflet-popup-content {
+    margin: 12px 15px;
+    min-width: 200px;
+}
+
+.leaflet-popup-content h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.leaflet-popup-content p {
+    margin: 0 0 5px;
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.leaflet-popup-content .popup-price {
+    font-weight: 600;
+    color: #2ecc71;
+}
+
+.leaflet-popup-content .popup-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.leaflet-popup-content .popup-actions button {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-marker-icon {
+    transition: transform 0.3s;
+}
+
+.leaflet-marker-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .map-content {
+        flex-direction: column;
+    }
+    
+    #parkingMap {
+        height: 500px;
+    }
+    
+    .parking-list {
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .spot-details {
+        flex-direction: column;
+    }
+    
+    .spot-images, .spot-info {
+        min-width: 100%;
+    }
+    
+    .spot-thumbnails {
+        justify-content: center;
+    }
+    
+    .availability-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .search-filters {
+        padding: 15px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-group {
+        min-width: 100%;
+    }
+    
+    #applyFilters {
+        width: 100%;
+    }
+    
+    #parkingMap {
+        height: 400px;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .spot-features {
+        gap: 10px;
+    }
+    
+    .availability-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    }
+}

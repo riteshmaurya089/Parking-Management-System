@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - SmartPark</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Smart Parking System</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Find Parking</a></li>
+                    <li><a href="booking.html" class="active">My Bookings</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="admin.html" class="admin-link">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="loginBtn">Login</button>
+                <button id="registerBtn">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="bookings-container">
+            <div class="bookings-header">
+                <h2>My Bookings</h2>
+                <div class="booking-tabs">
+                    <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+                    <button class="tab-btn" data-tab="past">Past</button>
+                    <button class="tab-btn" data-tab="cancelled">Cancelled</button>
+                </div>
+            </div>
+            
+            <div class="booking-list" id="upcomingBookings">
+                <h3>Upcoming Reservations</h3>
+                <div class="booking-card">
+                    <div class="booking-info">
+                        <div class="booking-location">
+                            <h4>Downtown Parking Garage</h4>
+                            <p>123 Main St, Anytown, USA</p>
+                            <div class="booking-features">
+                                <span><i class="fas fa-car"></i> Covered</span>
+                                <span><i class="fas fa-camera"></i> Security</span>
+                            </div>
+                        </div>
+                        <div class="booking-dates">
+                            <p><strong>Date:</strong> June 15, 2023</p>
+                            <p><strong>Time:</strong> 9:00 AM - 5:00 PM</p>
+                            <p><strong>Spot:</strong> A24 (Level 2)</p>
+                        </div>
+                        <div class="booking-price">
+                            <p><strong>Total:</strong> $22.00</p>
+                            <p><strong>Status:</strong> <span class="status-confirmed">Confirmed</span></p>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="action-btn view-details">View Details</button>
+                        <button class="action-btn cancel-booking">Cancel</button>
+                        <button class="action-btn get-directions">Get Directions</button>
+                    </div>
+                </div>
+                
+                <div class="booking-card">
+                    <div class="booking-info">
+                        <div class="booking-location">
+                            <h4>City Center Parking Lot</h4>
+                            <p>456 Central Ave, Anytown, USA</p>
+                            <div class="booking-features">
+                                <span><i class="fas fa-bolt"></i> EV Charging</span>
+                            </div>
+                        </div>
+                        <div class="booking-dates">
+                            <p><strong>Date:</strong> June 18, 2023</p>
+                            <p><strong>Time:</strong> 11:00 AM - 3:00 PM</p>
+                            <p><strong>Spot:</strong> B12</p>
+                        </div>
+                        <div class="booking-price">
+                            <p><strong>Total:</strong> $14.00</p>
+                            <p><strong>Status:</strong> <span class="status-confirmed">Confirmed</span></p>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="action-btn view-details">View Details</button>
+                        <button class="action-btn cancel-booking">Cancel</button>
+                        <button class="action-btn get-directions">Get Directions</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-list" id="pastBookings" style="display: none;">
+                <h3>Past Reservations</h3>
+                <div class="booking-card">
+                    <div class="booking-info">
+                        <div class="booking-location">
+                            <h4>Riverfront Parking</h4>
+                            <p>789 Riverside Dr, Anytown, USA</p>
+                        </div>
+                        <div class="booking-dates">
+                            <p><strong>Date:</strong> June 5, 2023</p>
+                            <p><strong>Time:</strong> 2:00 PM - 6:00 PM</p>
+                            <p><strong>Spot:</strong> C07</p>
+                        </div>
+                        <div class="booking-price">
+                            <p><strong>Total:</strong> $12.00</p>
+                            <p><strong>Status:</strong> <span class="status-completed">Completed</span></p>
+                        </div>
+                    </div>
+                    <div class="booking-actions">
+                        <button class="action-btn view-details">View Details</button>
+                        <button class="action-btn view-receipt">View Receipt</button>
+                        <button class="action-btn leave-review">Leave Review</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-list" id="cancelledBookings" style="display: none;">
+                <h3>Cancelled Reservations</h3>
+                <p>No cancelled reservations found.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Booking Details Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="booking-details">
+                <h2 id="bookingLocation">Downtown Parking Garage</h2>
+                <div class="detail-section">
+                    <h3>Reservation Details</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <p><strong>Booking ID:</strong></p>
+                            <p id="bookingId">SP-2023-06-0015</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Date:</strong></p>
+                            <p id="bookingDate">June 15, 2023</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Time:</strong></p>
+                            <p id="bookingTime">9:00 AM - 5:00 PM (8 hours)</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Parking Spot:</strong></p>
+                            <p id="bookingSpot">A24 (Level 2)</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Vehicle:</strong></p>
+                            <p id="bookingVehicle">Toyota Camry (ABC-1234)</p>
+                        </div>
+                        <div class="detail-item">
+                            <p><strong>Status:</strong></p>
+                            <p id="bookingStatus" class="status-confirmed">Confirmed</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>Pricing Breakdown</h3>
+                    <div class="price-grid">
+                        <div class="price-item">
+                            <p>Base Rate (8 hours @ $3.50/hr)</p>
+                            <p>$28.00</p>
+                        </div>
+                        <div class="price-item">
+                            <p>Early Bird Discount</p>
+                            <p>-$6.00</p>
+                        </div>
+                        <div class="price-item total">
+                            <p><strong>Total Paid</strong></p>
+                            <p><strong>$22.00</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>Parking Location</h3>
+                    <div class="mini-map" id="bookingMap"></div>
+                    <p id="bookingAddress">123 Main St, Anytown, USA</p>
+                    <button class="cta-button" id="openInMaps">Open in Maps</button>
+                </div>
+                
+                <div class="detail-actions">
+                    <button class="action-btn cancel-booking">Cancel Reservation</button>
+                    <button class="action-btn modify-booking">Modify Reservation</button>
+                    <button class="action-btn get-directions">Get Directions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>
